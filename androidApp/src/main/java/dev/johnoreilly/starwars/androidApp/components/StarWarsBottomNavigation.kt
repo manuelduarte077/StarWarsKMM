@@ -34,7 +34,7 @@ fun StarWarsBottomNavigation(navController: NavHostController) {
                         launchSingleTop = true
                     }
                 }
-            )
+            ) // end BottomNavigationItem
         }
     }
 }
