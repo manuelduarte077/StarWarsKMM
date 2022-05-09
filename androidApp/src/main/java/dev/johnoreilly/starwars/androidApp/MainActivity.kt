@@ -36,6 +36,8 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
+import dev.johnoreilly.starwars.androidApp.components.StarWarsBottomNavigation
+import dev.johnoreilly.starwars.androidApp.components.StarWarsTopAppBar
 import dev.johnoreilly.starwars.androidApp.navigation.Screen
 import dev.johnoreilly.starwars.androidApp.navigation.bottomNavigationItems
 import dev.johnoreilly.starwars.androidApp.theme.StarWarsTheme
@@ -94,39 +96,7 @@ private fun rememberStarWarsRepository(): StarWarsRepository {
     return repo
 }
 
-@Composable
-private fun StarWarsTopAppBar(title: String) {
-    Surface(color = MaterialTheme.colors.primary) {
-        TopAppBar(
-            title = { Text(title) },
-            backgroundColor = Color.Transparent,
-            elevation = 0.dp,
-            modifier = Modifier.statusBarsPadding()
-        )
-    }
-}
 
-@Composable
-private fun StarWarsBottomNavigation(navController: NavHostController) {
-
-    BottomNavigation(modifier = Modifier.navigationBarsPadding()) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
-
-         bottomNavigationItems.forEach { item ->
-            BottomNavigationItem(
-                icon = { Icon(painterResource(item.icon), contentDescription = item.iconContentDescription) },
-                selected = currentRoute == item.route,
-                onClick = {
-                    navController.navigate(item.route) {
-                        popUpTo(navController.graph.id)
-                        launchSingleTop = true
-                    }
-                }
-            )
-        }
-    }
-}
 
 const val PersonListTag = "PersonList"
 
