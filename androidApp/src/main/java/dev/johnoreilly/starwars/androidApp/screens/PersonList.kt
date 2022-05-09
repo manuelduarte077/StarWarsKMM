@@ -1,10 +1,13 @@
 package dev.johnoreilly.starwars.androidApp.screens
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,6 +22,7 @@ const val PersonListTag = "PersonList"
 fun PeopleList(people: List<PersonFragment>) {
     LazyColumn(modifier = Modifier.testTag(PersonListTag)) {
         items(people) { person ->
+
             PersonView(person)
         }
     }
@@ -33,12 +37,20 @@ fun PersonView(person: PersonFragment) {
         shape = RoundedCornerShape(5.dp)
     ) {
         ListItem(
+
             text = { Text(person.name, style = MaterialTheme.typography.h6) },
             secondaryText = {
                 Text(
                     person.homeworld.name,
                     style = MaterialTheme.typography.subtitle1,
                     color = Color.DarkGray
+                )
+            },
+            icon = {
+                Icon(
+                    Icons.Filled.Favorite,
+                    contentDescription = null,
+                    modifier = Modifier.size(40.dp)
                 )
             }
         )

@@ -1,5 +1,6 @@
 package dev.johnoreilly.starwars.androidApp.screens
 
+import android.graphics.drawable.Drawable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -36,7 +37,6 @@ fun FilmView(film: FilmFragment) {
 
     ) {
         ListItem(
-
             text = { Text(film.title, style = MaterialTheme.typography.h6) },
             secondaryText = {
                 Text(
