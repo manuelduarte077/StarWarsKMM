@@ -1,5 +1,6 @@
 package dev.johnoreilly.starwars.androidApp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -35,6 +36,8 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
+import dev.johnoreilly.starwars.androidApp.navigation.Screen
+import dev.johnoreilly.starwars.androidApp.navigation.bottomNavigationItems
 import dev.johnoreilly.starwars.androidApp.theme.StarWarsTheme
 import dev.johnoreilly.starwars.fragment.FilmFragment
 import dev.johnoreilly.starwars.fragment.PersonFragment
@@ -56,18 +59,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-sealed class Screen(val title: String) {
-    object PersonList : Screen("Person List")
-    object FilmList : Screen("Film List")
-}
 
-data class BottomNavigationitem(val route: String, val icon: Int, val iconContentDescription: String)
-
-val bottomNavigationItems = listOf(
-    BottomNavigationitem(Screen.PersonList.title, R.drawable.ic_face, Screen.PersonList.title),
-    BottomNavigationitem(Screen.FilmList.title, R.drawable.ic_movie, Screen.FilmList.title)
-)
-
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MainLayout() {
     val navController = rememberNavController()
